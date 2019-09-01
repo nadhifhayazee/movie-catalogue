@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,12 +16,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.submission1.R;
 import com.example.submission1.model.Movie;
-import com.example.submission1.presenter.DetailMoviePresenter;
-import com.example.submission1.presenter.DetailMovieView;
 
-public class DetailMovieActivity extends AppCompatActivity implements DetailMovieView, View.OnClickListener {
+public class DetailMovieActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private DetailMoviePresenter presenter;
     private TextView tvTitle;
     private TextView tvGenre;
     private TextView tvDuration;
@@ -50,12 +46,11 @@ public class DetailMovieActivity extends AppCompatActivity implements DetailMovi
         btnPlay = findViewById(R.id.button_play);
         btnBack.setOnClickListener(this);
         btnPlay.setOnClickListener(this);
-        presenter = new DetailMoviePresenter(this);
-        presenter.startBinding((Movie) getIntent().getParcelableExtra("MOVIE"));
+        bind((Movie) getIntent().getParcelableExtra("MOVIE"));
     }
 
-    @Override
-    public void bind(Movie movie) {
+
+    private void bind(Movie movie) {
         tvTitle.setText(movie.title);
         tvGenre.setText(movie.genre);
         tvDuration.setText(movie.duration);
@@ -65,7 +60,7 @@ public class DetailMovieActivity extends AppCompatActivity implements DetailMovi
         imgThumbnail.setImageResource(movie.thumbnail);
         Glide.with(this)
                 .load(movie.poster)
-                .apply(new RequestOptions().transform(new MultiTransformation<Bitmap>(new CenterCrop(),new RoundedCorners(16))))
+                .apply(new RequestOptions().transform(new MultiTransformation<Bitmap>(new CenterCrop(), new RoundedCorners(16))))
                 .into(imgPoster);
     }
 

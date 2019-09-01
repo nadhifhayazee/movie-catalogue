@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.submission1.R;
 import com.example.submission1.adapter.MovieAdapter;
@@ -39,13 +38,13 @@ public class MovieCatalogueFragment extends Fragment implements MoviesView {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
-        presenter = new MoviesPresenter(this,getActivity());
+        presenter = new MoviesPresenter(this, getActivity());
         return view;
     }
 
     @Override
     public void showMovieList(ArrayList<Movie> movies) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new MovieAdapter(getActivity(),movies));
+        recyclerView.setAdapter(new MovieAdapter(getActivity(), movies));
     }
 }

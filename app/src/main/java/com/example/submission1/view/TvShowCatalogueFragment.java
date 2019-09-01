@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.example.submission1.R;
 import com.example.submission1.adapter.MovieAdapter;
 import com.example.submission1.model.Movie;
-import com.example.submission1.presenter.MoviesPresenter;
 import com.example.submission1.presenter.TvShowPresenter;
 import com.example.submission1.presenter.TvShowView;
 
@@ -39,13 +38,13 @@ public class TvShowCatalogueFragment extends Fragment implements TvShowView {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
-        presenter = new TvShowPresenter(this,getActivity());
+        presenter = new TvShowPresenter(this, getActivity());
         return view;
     }
 
     @Override
     public void showTvShowList(ArrayList<Movie> movies) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new MovieAdapter(getActivity(),movies));
+        recyclerView.setAdapter(new MovieAdapter(getActivity(), movies));
     }
 }

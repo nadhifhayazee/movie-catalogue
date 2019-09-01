@@ -20,11 +20,9 @@ public class TvShowPresenter {
     private String[] dataSynopsis;
     private TypedArray dataPoster;
     private TypedArray dataThumbnail;
-    private Context context;
 
     public TvShowPresenter(TvShowView tvShowView, Context context) {
         this.tvShowView = tvShowView;
-        this.context = context;
         movies = new ArrayList<>();
         dataTitle = context.getResources().getStringArray(R.array.data_tv_show_title);
         dataGenre = context.getResources().getStringArray(R.array.data_tv_show_genre);
@@ -38,9 +36,9 @@ public class TvShowPresenter {
     }
 
     private void addItem() {
-        for (int i=0;i<dataTitle.length;i++){
-            movies.add(new Movie(dataTitle[i],dataGenre[i],dataDuration[i],dataDirector[i],
-                    dataRating[i],dataPoster.getResourceId(i,-1),dataThumbnail.getResourceId(i,-1),
+        for (int i = 0; i < dataTitle.length; i++) {
+            movies.add(new Movie(dataTitle[i], dataGenre[i], dataDuration[i], dataDirector[i],
+                    dataRating[i], dataPoster.getResourceId(i, -1), dataThumbnail.getResourceId(i, -1),
                     dataSynopsis[i]));
         }
         getMovieList();

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">@color/wetasphalt</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="wetasphalt">#34495e</color>
+
+    <color name="white_pure">#fff</color>
+
+    <color name="grey_cloud">#ecf0f1</color>
+
+    <color name="black_soft">#272727</color>
+
+    <color name="yellow_sunflower">#f1c40f</color>
 </resources>

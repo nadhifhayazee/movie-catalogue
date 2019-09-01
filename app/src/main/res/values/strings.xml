@@ -17,6 +17,9 @@
 
     <string name="change_language_settings">Change Language</string>
 
+    <string name="tab_title_movies">Movies</string>
+    <string name="tab_title_tv_show">Tv Show</string>
+
     <string-array name="data_movie_title">
         <item>Aquaman</item>
         <item>Avengers: Infinity War</item>
@@ -66,7 +69,7 @@
         <item>Travis Knight</item>
         <item>Steven Caple Jr.</item>
         <item>David Leitch</item>
-        <item>M. Night Shyamalan</item>
+        <item>M. Shyamalan</item>
         <item>Donovan Marsh</item>
         <item>Peter Ramsey</item>
         <item>Clint Eastwood</item>
@@ -206,12 +209,12 @@
         <item>Jonathan Lisco</item>
         <item>Aaron Martin</item>
         <item>Drew Goddard</item>
-        <item>David Benioff, D.B. Weiss</item>
+        <item>David Benioff</item>
         <item>Noah Hawley</item>
         <item>Sam Esmail</item>
         <item>Paul Scheuring</item>
-        <item>Gary Dauberman, Mark Verheiden</item>
-        <item>Frank Darabont, Angela Kang</item>
+        <item>Gary Dauberman</item>
+        <item>Frank Darabont</item>
         <item>Matt Nix</item>
         <item>Greg Berlanti</item>
 

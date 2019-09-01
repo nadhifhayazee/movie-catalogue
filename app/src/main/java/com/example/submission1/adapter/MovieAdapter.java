@@ -50,7 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailMovieActivity.class);
-                intent.putExtra("MOVIE",movie);
+                intent.putExtra("MOVIE", movie);
                 context.startActivity(intent);
             }
         });
@@ -92,7 +92,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvRating.setText(movie.rating);
             Glide.with(itemView.getContext())
                     .load(movie.poster)
-                    .apply(new RequestOptions().transform(new MultiTransformation<Bitmap>(new CenterCrop(),new RoundedCorners(16))))
+                    .apply(new RequestOptions().transform(new MultiTransformation<Bitmap>(new CenterCrop(), new RoundedCorners(16))))
                     .into(imgPoster);
         }
 
