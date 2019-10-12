@@ -11,6 +11,8 @@
         android:id="@+id/image_poster"
         android:layout_width="150dp"
         android:layout_height="200dp"
+        android:contentDescription="Poster film"
+        android:src="@drawable/no_images"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/image_poster"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="OKB" />
 
     <TextView
         android:id="@+id/textView"
@@ -42,15 +45,6 @@
         app:layout_constraintStart_toEndOf="@+id/image_poster"
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/text_duration"
-        app:layout_constraintStart_toEndOf="@+id/image_poster"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView3"
@@ -58,9 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:text="@string/text_director"
+        android:text="@string/text_date_release"
         app:layout_constraintStart_toEndOf="@+id/image_poster"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView5"
@@ -86,23 +80,9 @@
         app:layout_constraintTop_toBottomOf="@+id/text_title"
         tools:text="qeqqe" />
 
-    <TextView
-        android:id="@+id/text_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:paddingRight="8dp"
-        android:textColor="@android:color/black"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/text_genre"
-        tools:text="adada" />
-
 
     <TextView
-        android:id="@+id/text_director"
+        android:id="@+id/text_date_release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -111,7 +91,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/text_duration"
+        app:layout_constraintTop_toBottomOf="@+id/text_genre"
         tools:text="ragagaga" />
 
     <TextView
@@ -124,7 +104,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/text_director"
+        app:layout_constraintTop_toBottomOf="@+id/text_date_release"
         tools:text="ssgwwgwg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

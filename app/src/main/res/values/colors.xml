@@ -6,11 +6,7 @@
 
     <color name="wetasphalt">#34495e</color>
 
-    <color name="white_pure">#fff</color>
-
     <color name="grey_cloud">#ecf0f1</color>
-
-    <color name="black_soft">#272727</color>
 
     <color name="yellow_sunflower">#f1c40f</color>
 </resources>

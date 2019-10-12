@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,19 +18,25 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.submission1.R;
-import com.example.submission1.model.Movie;
-import com.example.submission1.view.DetailMovieActivity;
+import com.example.submission1.model.Genre;
+import com.example.submission1.model.MovieModel;
+import com.example.submission1.statics.EndPoint;
+import com.example.submission1.view.detail.DetailMovieActivity;
 
 import java.util.ArrayList;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Movie> movies;
+    private ArrayList<MovieModel> movies;
+    private ArrayList<Genre> genres;
+    private String type;
 
-    public MovieAdapter(Context context, ArrayList<Movie> movies) {
+    public MovieAdapter(Context context, ArrayList<MovieModel> movies,ArrayList<Genre> genres,String type) {
         this.context = context;
         this.movies = movies;
+        this.genres = genres;
+        this.type = type;
     }
 
 
@@ -44,13 +49,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final Movie movie = movies.get(position);
+        final MovieModel movie = movies.get(position);
         holder.bind(movie);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailMovieActivity.class);
-                intent.putExtra("MOVIE", movie);
+                intent.putExtra("movie_id", movie.id);
+                intent.putExtra("type",type);
                 context.startActivity(intent);
             }
         });
@@ -69,29 +75,31 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle;
         private TextView tvGenre;
-        private TextView tvDuration;
-        private TextView tvDirector;
+        private TextView tvRealease;
         private TextView tvRating;
         private ImageView imgPoster;
 
         ViewHolder(View view) {
             super(view);
             tvTitle = view.findViewById(R.id.text_title);
-            tvDirector = view.findViewById(R.id.text_director);
             tvGenre = view.findViewById(R.id.text_genre);
             tvRating = view.findViewById(R.id.text_rating);
-            tvDuration = view.findViewById(R.id.text_duration);
+            tvRealease = view.findViewById(R.id.text_date_release);
             imgPoster = view.findViewById(R.id.image_poster);
         }
 
-        void bind(Movie movie) {
-            tvTitle.setText(movie.title);
-            tvGenre.setText(movie.genre);
-            tvDuration.setText(movie.duration);
-            tvDirector.setText(movie.director);
-            tvRating.setText(movie.rating);
+        void bind(MovieModel movie) {
+            if (type.equals("movie")){
+                tvTitle.setText(movie.original_title);
+                tvRealease.setText(movie.release_date);
+            } else {
+                tvTitle.setText(movie.original_name);
+                tvRealease.setText(movie.first_air_date);
+            }
+            tvGenre.setText(movie.getGenres(genres,movie.genre_ids));
+            tvRating.setText(movie.vote_average+"/10");
             Glide.with(itemView.getContext())
-                    .load(movie.poster)
+                    .load(EndPoint.IMAGE_URL+movie.poster_path)
                     .apply(new RequestOptions().transform(new MultiTransformation<Bitmap>(new CenterCrop(), new RoundedCorners(16))))
                     .into(imgPoster);
         }
