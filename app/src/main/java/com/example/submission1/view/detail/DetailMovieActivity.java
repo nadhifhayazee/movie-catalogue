@@ -2,7 +2,6 @@ package com.example.submission1.view.detail;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.submission1.R;
+import com.example.submission1.database.TableHelper;
 import com.example.submission1.model.MovieModel;
 import com.example.submission1.presenter.basedetail.DetailMovieView;
 import com.example.submission1.statics.EndPoint;
@@ -69,7 +69,8 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         });
         type = getIntent().getStringExtra("type");
         movie_id = getIntent().getIntExtra("movie_id", 0);
-
+        TableHelper.getMovieHelper().open();
+        TableHelper.getTvHelper().open();
         if (type.equals("movie")) {
             moviePresenter = new DetailMoviePresenter(this, movie_id);
             moviePresenter.getDetail();
@@ -87,16 +88,13 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
 
             case R.id.button_play:
-                Toast.makeText(this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.button_favorite:
-                Log.i("sqlite", "masukcoy");
                 if (type.equals("movie")) {
                     moviePresenter.onBtnFavoriteClicked();
-                    Log.i("sqlite", "masuk");
                 } else {
-                    Log.i("sqlite", "masuk");
                     tvPresenter.onBtnFavoriteClicked();
                 }
                 break;
@@ -114,15 +112,14 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             toolbar.setTitle(movie.original_name);
             tvTitle.setText(movie.original_name);
             tvRelease.setText(movie.first_air_date);
-            tvDuration.setText("45");
+            tvDuration.setText(getResources().getString(R.string.minute));
         }
         tvGenre.setText(movie.getGenre());
         tvRating.setText(movie.vote_average + "/10");
         tvSinopsis.setText(movie.overview);
         if (movie.overview.equals(""))
-            tvSinopsis.setText("Tidak ada review");
+            tvSinopsis.setText(getResources().getString(R.string.no_review));
 
-        Log.i("sinopsis", movie.overview);
 
         Glide.with(this)
                 .load(EndPoint.BACKDROP_URL + movie.backdrop_path)
@@ -142,37 +139,43 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onInsertSuccess() {
-        Toast.makeText(this, "Berhasil ditambahkan ke favorit", Toast.LENGTH_SHORT).show();
-        Log.i("sqlite", "sukses");
+        Toast.makeText(this, getResources().getString(R.string.insert_success), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onInsertFailed() {
-        Toast.makeText(this, "Gagal ditambahkan ke favorit", Toast.LENGTH_SHORT).show();
-        Log.i("sqlite", "gagal");
+        Toast.makeText(this, getResources().getString(R.string.insert_failed), Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void isFavorited() {
-        btnFav.setText("Hapus dari Favorit");
+        btnFav.setText(getResources().getString(R.string.delete_from_fav));
     }
 
     @Override
     public void onDeleteSuccess() {
-        Toast.makeText(this, "Berhasil didihapus dari favorit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.delete_succes), Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onDeleteFailed() {
-        Toast.makeText(this, "Gagal didihapus dari favorit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.delete_failed), Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void isNotFavorited() {
-        btnFav.setText("Tambahkan ke Favorit");
+        btnFav.setText(getResources().getString(R.string.add_to_fav));
 
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TableHelper.getMovieHelper().close();
+        TableHelper.getTvHelper().close();
     }
 }

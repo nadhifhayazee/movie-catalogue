@@ -1,4 +1,4 @@
-package com.example.submission1.view.movie;
+package com.example.submission1.view.favorite;
 
 
 import android.os.Bundle;
@@ -13,25 +13,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.submission1.R;
-import com.example.submission1.adapter.MovieAdapter;
-import com.example.submission1.model.Genre;
+import com.example.submission1.adapter.FavoriteAdapter;
 import com.example.submission1.model.MovieModel;
-import com.example.submission1.presenter.basecatalogue.CatalogueView;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieCatalogueFragment extends Fragment implements CatalogueView {
-
+public class FavoriteTvFragment extends Fragment implements FavoriteView {
     private View view;
-    private MoviesPresenter presenter;
+    private FavoritePresenter presenter;
+
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private TextView empty_view;
 
-    public MovieCatalogueFragment() {
+    public FavoriteTvFragment() {
         // Required empty public constructor
     }
 
@@ -43,22 +41,30 @@ public class MovieCatalogueFragment extends Fragment implements CatalogueView {
         recyclerView = view.findViewById(R.id.recycler_view);
         progressBar = view.findViewById(R.id.progress_bar);
         empty_view = view.findViewById(R.id.empty_view);
-        presenter = new MoviesPresenter(this);
-        presenter.initGenres();
+        presenter = new FavoritePresenter(this);
         return view;
     }
 
-
     @Override
-    public void showMovieList(ArrayList<MovieModel> movies, ArrayList<Genre> genres) {
+    public void showFavorite(ArrayList<MovieModel> resuts) {
+        progressBar.setVisibility(View.GONE);
+        FavoriteAdapter favoriteAdapter = new FavoriteAdapter(getActivity(), resuts, "tv", this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new MovieAdapter(getActivity(), movies, genres, "movie"));
+        recyclerView.setAdapter(favoriteAdapter);
         recyclerView.setVisibility(View.VISIBLE);
+        empty_view.setVisibility(View.GONE);
     }
 
     @Override
-    public void hideProgressBar() {
+    public void onEmpty() {
         progressBar.setVisibility(View.GONE);
-        empty_view.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
+        empty_view.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.getTvFavorites();
     }
 }

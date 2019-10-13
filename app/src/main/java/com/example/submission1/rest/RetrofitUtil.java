@@ -8,13 +8,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitUtil {
     private static Retrofit retrofit = null;
 
-    public static Retrofit getRetrofit(String baseUrl){
-        if (retrofit == null){
+    public static Retrofit getRetrofit(String baseUrl) {
+        if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor()
-                    .setLevel(HttpLoggingInterceptor.Level.BODY)).build())
+                            .setLevel(HttpLoggingInterceptor.Level.BODY)).build())
                     .build();
         }
         return retrofit;

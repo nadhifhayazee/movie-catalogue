@@ -15,7 +15,7 @@ public abstract class BaseCataloguePresenter {
 
     public BaseCataloguePresenter(CatalogueView catalogueView) {
         this.catalogueView = catalogueView;
-        switch (Locale.getDefault().getLanguage()){
+        switch (Locale.getDefault().getLanguage()) {
             case "in":
                 mDeviceLanguage = "id";
                 break;

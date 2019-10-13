@@ -16,18 +16,16 @@ public interface Request {
 
     @GET("tv/popular")
     Call<MovieListResponse> getTvList(@Query("api_key") String api_key, @Query("language") String language,
-                                         @Query("page") int page);
-
+                                      @Query("page") int page);
 
 
     @GET("movie/{movie_id}")
-    Call<MovieModel> getDetailMovie(@Path("movie_id")int movie_id, @Query("api_key") String api_key,
+    Call<MovieModel> getDetailMovie(@Path("movie_id") int movie_id, @Query("api_key") String api_key,
                                     @Query("language") String language);
 
     @GET("tv/{tv_id}")
-    Call<MovieModel> getDetailTv(@Path("tv_id")int tv_id, @Query("api_key") String api_key,
-                                    @Query("language") String language);
-
+    Call<MovieModel> getDetailTv(@Path("tv_id") int tv_id, @Query("api_key") String api_key,
+                                 @Query("language") String language);
 
 
     @GET("genre/movie/list")
@@ -36,5 +34,5 @@ public interface Request {
 
     @GET("genre/tv/list")
     Call<GenresResponse> getTvGenres(@Query("api_key") String api_key,
-                                    @Query("language") String language);
+                                     @Query("language") String language);
 }

@@ -7,8 +7,8 @@ public class DatabaseContract {
     static String TABLE_FAVORITE_TV = "tv_fav";
 
     public static final class MovieColumns implements BaseColumns {
-         public static String MOVIE_ID = "movie_id";
-         public static String MOVIE_JSON = "movie_json";
+        public static String MOVIE_ID = "movie_id";
+        public static String MOVIE_JSON = "movie_json";
     }
 
     public static final class TvColumns implements BaseColumns {

@@ -13,7 +13,7 @@ public class TableHelper extends Application {
         builder(getApplicationContext());
     }
 
-    private void builder(Context context){
+    private void builder(Context context) {
 
         movieHelper = new MovieHelper(context);
         tvHelper = new TvHelper(context);

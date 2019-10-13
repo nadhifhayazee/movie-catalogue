@@ -16,11 +16,16 @@ public class MovieModel {
     public String original_name;
     public int runtime;
 
+    public MovieModel movieModel;
+
+    public MovieModel(MovieModel movieModel) {
+        this.movieModel = movieModel;
+    }
 
     public String getGenres(ArrayList<Genre> genres, ArrayList<Integer> genre_ids) {
         StringBuilder genre = new StringBuilder();
 
-        if (genres!=null && genres.size()!=0 && genre_ids!=null && genre_ids.size()!=0){
+        if (genres != null && genres.size() != 0 && genre_ids != null && genre_ids.size() != 0) {
 
             for (Genre item : genres) {
                 if (genre_ids.get(0) == item.id) {
@@ -34,8 +39,8 @@ public class MovieModel {
 
     }
 
-    public String getGenre(){
-        if (genres!=null && genres.size()!=0){
+    public String getGenre() {
+        if (genres != null && genres.size() != 0) {
             return genres.get(0).name;
         }
         return "-";

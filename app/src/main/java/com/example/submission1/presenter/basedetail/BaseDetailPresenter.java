@@ -11,7 +11,7 @@ public abstract class BaseDetailPresenter {
     public BaseDetailPresenter(DetailMovieView detailMovieView, int movie_id) {
         this.detailMovieView = detailMovieView;
         this.movie_id = movie_id;
-        switch (Locale.getDefault().getLanguage()){
+        switch (Locale.getDefault().getLanguage()) {
             case "in":
                 mDeviceLanguage = "id";
                 break;
@@ -21,8 +21,8 @@ public abstract class BaseDetailPresenter {
         }
     }
 
-    public void onBtnFavoriteClicked(){
-        if (!isFavorited){
+    public void onBtnFavoriteClicked() {
+        if (!isFavorited) {
             addFavorite();
         } else {
             deleteFavorite();
@@ -30,8 +30,11 @@ public abstract class BaseDetailPresenter {
     }
 
     public abstract void deleteFavorite();
+
     public abstract void addFavorite();
+
     public abstract void getDetail();
+
     public abstract void isFavorited();
 
 

@@ -14,17 +14,16 @@ import retrofit2.Response;
 public class TvShowPresenter extends BaseCataloguePresenter {
 
 
-
     public TvShowPresenter(CatalogueView catalogueView) {
         super(catalogueView);
     }
 
     @Override
     public void initGenres() {
-        ApiUtil.getRequest().getTvGenres(BuildConfig.Api_Key,mDeviceLanguage).enqueue(new Callback<GenresResponse>() {
+        ApiUtil.getRequest().getTvGenres(BuildConfig.Api_Key, mDeviceLanguage).enqueue(new Callback<GenresResponse>() {
             @Override
             public void onResponse(Call<GenresResponse> call, Response<GenresResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mGenres = response.body().genres;
                     sendMoviesRequest();
                 }
@@ -38,13 +37,13 @@ public class TvShowPresenter extends BaseCataloguePresenter {
     }
 
     private void sendMoviesRequest() {
-        ApiUtil.getRequest().getTvList(BuildConfig.Api_Key,mDeviceLanguage,2).enqueue(new Callback<MovieListResponse>() {
+        ApiUtil.getRequest().getTvList(BuildConfig.Api_Key, mDeviceLanguage, 2).enqueue(new Callback<MovieListResponse>() {
             @Override
             public void onResponse(Call<MovieListResponse> call, Response<MovieListResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mMovies = response.body().results;
                     catalogueView.hideProgressBar();
-                    catalogueView.showMovieList(mMovies,mGenres);
+                    catalogueView.showMovieList(mMovies, mGenres);
                 }
             }
 

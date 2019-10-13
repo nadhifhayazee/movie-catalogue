@@ -6,15 +6,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "dbfavorite";
+    private static String DATABASE_NAME = "dbfavorite";
 
-    public static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String SQL_CREATE_TABLE_MOVIE = "CREATE TABLE " + DatabaseContract.TABLE_FAVORITE_MOVIE
-                + "("
-                + DatabaseContract.MovieColumns.MOVIE_ID + " INTEGER PRIMARY KEY, "
-                + DatabaseContract.MovieColumns.MOVIE_JSON + " TEXT"
-                + ")";
+            + "("
+            + DatabaseContract.MovieColumns.MOVIE_ID + " INTEGER PRIMARY KEY, "
+            + DatabaseContract.MovieColumns.MOVIE_JSON + " TEXT"
+            + ")";
 
     private static final String SQL_CREATE_TABLE_TV = "CREATE TABLE " + DatabaseContract.TABLE_FAVORITE_TV
             + "("
@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ")";
 
     public DatabaseHelper(Context context) {
-        super(context,DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 

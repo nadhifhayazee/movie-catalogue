@@ -21,7 +21,7 @@ public abstract class BaseSqlHelper {
         db = databaseHelper.getReadableDatabase();
     }
 
-    public void close(){
+    public void close() {
         databaseHelper.close();
 
         if (db.isOpen()) db.close();
@@ -37,8 +37,8 @@ public abstract class BaseSqlHelper {
                 null);
     }
 
-    public Cursor queryById(int id){
-        return db.query(getTableName(),null
+    public Cursor queryById(int id) {
+        return db.query(getTableName(), null
                 , getID() + " = ?"
                 , new String[]{String.valueOf(id)}
                 , null
@@ -50,15 +50,16 @@ public abstract class BaseSqlHelper {
     public long insert(ContentValues values) {
         Gson gson = new Gson();
 
-        return db.insert(getTableName(),null,values);
+        return db.insert(getTableName(), null, values);
     }
 
 
-    public int deleteById(int id){
+    public int deleteById(int id) {
         return db.delete(getTableName(), getID() +
                 " = ?", new String[]{String.valueOf(id)});
     }
 
     public abstract String getTableName();
+
     public abstract String getID();
 }

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.favorite.FavoriteActivity"></activity>
+        <activity android:name=".view.favorite.FavoriteActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".view.detail.DetailMovieActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />

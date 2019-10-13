@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie Catalogue</string>
+    <string name="app_name">Katalog Film</string>
 
     <string name="text_genre">Aliran</string>
     <string name="text_duration">Durasi</string>
@@ -14,5 +14,13 @@
 
     <string name="add_to_fav">TAMBAH KE FAVORIT</string>
     <string name="favorite">Favorit</string>
-
+    <string name="delete_failed">Gagal dihapus dari Favorit</string>
+    <string name="delete_from_fav">Hapus dari Favorit</string>
+    <string name="delete_succes">Berhasil dihapus</string>
+    <string name="insert_failed">Gagal ditambahkan</string>
+    <string name="insert_success">Berhasil ditambahkan</string>
+    <string name="empty_favorite">Belum Ada Favorit</string>
+    <string name="no_review">Tidak Ada Review</string>
+    <string name="minute">45 Menit</string>
+    <string name="coming_soon">Segera Hadir…</string>
 </resources>

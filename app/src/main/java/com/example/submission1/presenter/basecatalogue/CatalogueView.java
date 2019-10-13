@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public interface CatalogueView {
     void showMovieList(ArrayList<MovieModel> movies, ArrayList<Genre> genres);
+
     void hideProgressBar();
 
 }

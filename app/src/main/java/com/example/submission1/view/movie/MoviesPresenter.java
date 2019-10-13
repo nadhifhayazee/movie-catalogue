@@ -20,10 +20,10 @@ public class MoviesPresenter extends BaseCataloguePresenter {
 
     @Override
     public void initGenres() {
-        ApiUtil.getRequest().getMovieGenres(BuildConfig.Api_Key,mDeviceLanguage).enqueue(new Callback<GenresResponse>() {
+        ApiUtil.getRequest().getMovieGenres(BuildConfig.Api_Key, mDeviceLanguage).enqueue(new Callback<GenresResponse>() {
             @Override
             public void onResponse(Call<GenresResponse> call, Response<GenresResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mGenres = response.body().genres;
                     sendMoviesRequest();
                 }
@@ -38,13 +38,13 @@ public class MoviesPresenter extends BaseCataloguePresenter {
 
 
     private void sendMoviesRequest() {
-        ApiUtil.getRequest().getMovieList(BuildConfig.Api_Key,mDeviceLanguage,1).enqueue(new Callback<MovieListResponse>() {
+        ApiUtil.getRequest().getMovieList(BuildConfig.Api_Key, mDeviceLanguage, 1).enqueue(new Callback<MovieListResponse>() {
             @Override
             public void onResponse(Call<MovieListResponse> call, Response<MovieListResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     mMovies = response.body().results;
                     catalogueView.hideProgressBar();
-                    catalogueView.showMovieList(mMovies,mGenres);
+                    catalogueView.showMovieList(mMovies, mGenres);
                 }
             }
 

@@ -1,19 +1,18 @@
 package com.example.submission1.view.main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.submission1.R;
 import com.example.submission1.adapter.TabAdapter;
-import com.example.submission1.database.TableHelper;
 import com.example.submission1.view.favorite.FavoriteActivity;
 import com.example.submission1.view.movie.MovieCatalogueFragment;
 import com.example.submission1.view.tv.TvShowCatalogueFragment;
@@ -31,12 +30,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TableHelper.getMovieHelper().open();
-        TableHelper.getTvHelper().open();
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
         toolbar = findViewById(R.id.simple_toolbar);
-        toolbar.setTitle("Movie Catalogue");
+        toolbar.setTitle(getResources().getString(R.string.app_name));
         toolbar.inflateMenu(R.menu.main_menu);
         setSupportActionBar(toolbar);
         initTab();
@@ -67,10 +64,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        TableHelper.getMovieHelper().close();
-        TableHelper.getTvHelper().close();
-    }
 }

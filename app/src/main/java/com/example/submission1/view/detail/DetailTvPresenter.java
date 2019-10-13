@@ -10,7 +10,7 @@ import com.example.submission1.model.MovieModel;
 import com.example.submission1.presenter.basedetail.BaseDetailPresenter;
 import com.example.submission1.presenter.basedetail.DetailMovieView;
 import com.example.submission1.rest.ApiUtil;
-import com.example.submission1.utils.Formater;
+import com.example.submission1.statics.Formater;
 
 import retrofit2.Call;
 import retrofit2.Callback;

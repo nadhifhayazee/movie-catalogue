@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +29,7 @@ public class TvShowCatalogueFragment extends Fragment implements CatalogueView {
     private TvShowPresenter presenter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-
+    private TextView empty_view;
 
     public TvShowCatalogueFragment() {
         // Required empty public constructor
@@ -41,7 +42,7 @@ public class TvShowCatalogueFragment extends Fragment implements CatalogueView {
         view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
         progressBar = view.findViewById(R.id.progress_bar);
-
+        empty_view = view.findViewById(R.id.empty_view);
         presenter = new TvShowPresenter(this);
         presenter.initGenres();
         return view;
@@ -51,7 +52,7 @@ public class TvShowCatalogueFragment extends Fragment implements CatalogueView {
     @Override
     public void showMovieList(ArrayList<MovieModel> movies, ArrayList<Genre> genres) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new MovieAdapter(getActivity(), movies,genres,"tv"));
+        recyclerView.setAdapter(new MovieAdapter(getActivity(), movies, genres, "tv"));
         recyclerView.setVisibility(View.VISIBLE);
 
     }
@@ -59,6 +60,6 @@ public class TvShowCatalogueFragment extends Fragment implements CatalogueView {
     @Override
     public void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
-
+        empty_view.setVisibility(View.GONE);
     }
 }

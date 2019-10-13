@@ -2,7 +2,6 @@
     <string name="app_name">Movie Catalogue</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-
     <string name="text_genre">Genre</string>
     <string name="text_duration">Duration</string>
     <string name="text_date_release">Release</string>
@@ -13,8 +12,20 @@
 
     <string name="tab_title_movies">Movies</string>
     <string name="tab_title_tv_show">Tv Show</string>
-    <string name="add_to_fav">Add To Favorite</string>
     <string name="favorite">Favorite</string>
+    <string name="add_to_fav">Add to Favorite</string>
+    <string name="delete_failed">Remove Failed</string>
+    <string name="delete_from_fav">Remove from Favorite</string>
+    <string name="delete_succes">Remove Success</string>
+    <string name="insert_failed">Insert Failed</string>
+    <string name="insert_success">Insert Success</string>
+    <string name="no_review">No Review</string>
+    <string name="minute">45 Minute</string>
+    <string name="coming_soon">Coming Soon…</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="empty_favorite">Favorite is Empty</string>
 
 
 </resources>

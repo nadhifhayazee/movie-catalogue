@@ -18,25 +18,25 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.submission1.R;
-import com.example.submission1.model.Genre;
 import com.example.submission1.model.MovieModel;
 import com.example.submission1.statics.EndPoint;
 import com.example.submission1.view.detail.DetailMovieActivity;
+import com.example.submission1.view.favorite.FavoriteView;
 
 import java.util.ArrayList;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<MovieModel> movies;
-    private ArrayList<Genre> genres;
     private String type;
+    private FavoriteView favoriteView;
 
-    public MovieAdapter(Context context, ArrayList<MovieModel> movies, ArrayList<Genre> genres, String type) {
+    public FavoriteAdapter(Context context, ArrayList<MovieModel> movies, String type, FavoriteView favoriteView) {
         this.context = context;
         this.movies = movies;
-        this.genres = genres;
         this.type = type;
+        this.favoriteView = favoriteView;
     }
 
 
@@ -47,19 +47,37 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
+    public void removeItem(int movie_id) {
+        int i = 0;
+        int position = 0;
+        for (MovieModel item : movies) {
+            if (item.id == movie_id) {
+                position = i;
+            }
+            i++;
+        }
+        this.movies.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, movies.size());
+    }
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final MovieModel movie = movies.get(position);
-        holder.bind(movie);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DetailMovieActivity.class);
-                intent.putExtra("movie_id", movie.id);
-                intent.putExtra("type", type);
-                context.startActivity(intent);
-            }
-        });
+        if (movies.size() != 0) {
+            final MovieModel movie = movies.get(position);
+            holder.bind(movie);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, DetailMovieActivity.class);
+                    intent.putExtra("movie_id", movie.id);
+                    intent.putExtra("type", type);
+                    context.startActivity(intent);
+                }
+            });
+        } else {
+            favoriteView.onEmpty();
+        }
     }
 
     @Override
@@ -96,7 +114,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 tvTitle.setText(movie.original_name);
                 tvRealease.setText(movie.first_air_date);
             }
-            tvGenre.setText(movie.getGenres(genres, movie.genre_ids));
+            tvGenre.setText(movie.getGenre());
             tvRating.setText(movie.vote_average + "/10");
             Glide.with(itemView.getContext())
                     .load(EndPoint.IMAGE_URL + movie.poster_path)
